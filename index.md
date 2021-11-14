@@ -1,37 +1,96 @@
-## Welcome to GitHub Pages
+# Overview - Xamarin.UITest (Cross-Platform) 📱
 
-You can use the [editor on GitHub](https://github.com/CanarysPlayground/mob-devops-demo/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This sample is designed for use in Visual Studio & includes the sourcecode for a Xamarin.Forms app on Android & iOS platforms & a Xamarin.UITest project. It also includes a precompiled APK & IPA incase you want to try only building, running and uploading Xamarin.UITest.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Building & running locally
 
-### Markdown
+You can either build the entire solution, or you can just build the Xamarin.UITest project.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Windows users
 
-```markdown
-Syntax highlighted code block
+Compared to running on Mac, Xamarin.UITests have additional requirements and limitations as follows:
 
-# Header 1
-## Header 2
-### Header 3
+- Xamarin.UITest cannot be run locally against iOS apps in Windows, even if using a paired Mac capable of building iOS apps.
+- NUnit3TestAdapter is required to run tests locally in Windows. It is not required to run tests in Mac or tests submitted to Visual Studio App Center Test.
+- You must set the ANDROID_HOME enviroment variable to the main folder of your Android SDK. You can create this variable as follows:
+  1. Go to **Control Panel > System > Advanced System Settings > Environment Variables > System Variables\* > New…**
+  2. Name the variable `ANDROID_HOME` and set it to your Android SDK path. (For example `C:\Program Files (x86)\Android\android-sdk`, your location may vary.)
+  3. Close all instances of Visual Studio and reopen for the updated `ANDROID_HOME` to take effect.
+- You must use the `.ApkFile()` method to [point to the APK](UITestDemo.UITest/AppInitializer.cs#L30).
 
-- Bulleted
-- List
+## Running locally without building the iOS app
 
-1. Numbered
-2. List
+You can run the UITest project locally without building the app projects by using precompiled files:
 
-**Bold** and _Italic_ and `Code` text
+1. Open "UITestDemo.UITest > AppInitializer.cs"
+2. To point to the app file, unzip the app located in the "precompiledApps" directory of the project & uncomment the line for '.AppBundle' in AppInitializer.cs
+     (You cannot use the precompiled IPA for local testing because it will not be signed for one of your devices. If you build the IPA for the project first though, you can install it on the device and point to it using '.InstalledApp'.)
 
-[Link](url) and ![Image](src)
-```
+3. Build the Xamarin.UITest project.
+4. Running the tests differs slightly if you're using Visual Studio for Mac or Visual Studio on Windows:
+   - **VS for Mac** - Go to **View > Pads > Unit Tests > Run All** (When testing on Windows, only Android is supported.)
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+## Running locally with building the Android/iOS apps
 
-### Jekyll Themes
+1. You can build individual projects or the entire solution by right-clicking them in the solution pad and selecting "Build [Project/Solution Name]."
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/CanarysPlayground/mob-devops-demo/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+2. Be aware of the following considerations for using Xamarin.UITest with these built projects:
 
-### Support or Contact
+   - 'UITestDemo.Droid' must be built using a "Release" configuration. This is because by default a "Debug" build of a Xamarin.Android project includes the "Shared Mono Runtime" which is not compatible with Xamarin.UITest.
+   - 'UITestDemo.iOS' must be built using a "Debug" configuration. This is because by default iOS apps built for distrbution are rejected from the iOS app store if they contain 'Calabash' the testing framework which allows Xamarin.UITest to interact with iOS apps.
+   - Android APKs can be run on either a physical Android device or emulator interchangably. iOS must use a '.app' build to run on an iOS simulator & an '.IPA' with a valid signing identity to run on an iOS device.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+3. Running the tests differs slightly if you're using Visual Studio for Mac or Visual Studio on Windows:
+   - **VS for Mac** - Go to **View > Pads > Unit Tests > Run All**
+   - **VS for Windows** - Go to **Test > Windows > Test Explorer > Run All**. When testing on Windows, only Android is supported; and you must also set the [`.ApkFile()` path in the AppInitializer.cs ConfigureApp statement](/Xamarin.UITest/UITestDemo/UITestDemo.UITest/AppInitializer.cs#L31)
+
+# Uploading tests
+
+1. Build the Xamarin.UITest project.
+2. Generate a command line for upload: [Directions](/../../#upload-commands)
+3. Update the upload command with project-specific arguments:
+   - **OS X** paste your command as the value for 'AppCenter_Test_Command' in 'android.sh' or 'ios.sh' depending on the platform. You can run these files using 'sh android.sh' or 'sh ios.sh'.
+   - **Windows** The '.sh' files are not technically compatible with Windows, however it shows how to modify the generated command to upload this sample manually.
+
+#### See Also
+
+- Android upload script: [android.sh](android.sh)
+- iOS upload script: [ios.sh](ios.sh)
+
+# Building in App Center
+
+Documentation reference: https://docs.microsoft.com/en-us/appcenter/build/
+This blog also details most of the steps required, though a few details are out of date: https://tomsoderling.github.io/AppCenter-Automated-UI-tests-on-build/
+
+**To build apps in App Center, you must own the repository you wish to build from. For example, to use the samples in this repo, you have to fork this repository.**
+
+## Integrating Test Suite on Android
+
+If you have the build working on it's own in App Center Build, then there just a few more steps to enable Test support. These steps are handled by the script called [appcenter-post-build.sh](Droid/appcenter-post-build.sh) in the "Droid" project folder.
+
+1. For this example, Add the Custom Environment Varaibles to your build settings in App Center:
+
+   - `$API_KEY` - You can use an existing API key or generate a new one (https://intercom.help/appcenter/articles/1841885-how-to-use-app-center-s-api)
+   - `$TEAM_APP` - This is the argument given to the `--app` flag in your Test upload command.
+   - `$DEVICE_SET` - This is the argument given to the `--devices` flag in your Test upload command.
+
+2. Make sure the first time you use the script to manually select "Save & Build" in the App Center Build dialog. Otherwise the build script will be ignored.
+
+### Background Info on how the script works
+
+To use this script note the following:
+
+- Technically all of the commented sections & 'echo' statements are just there to help you understand what the script is doing; the script would work if reduced only to declaring the variables & evaluating statements.
+
+- It's important to build the Xamarin.UITest project in the command line; as that is not handled automatically as part of the Android app project build. This is handled by the `MSBuild` command in the script.
+
+- Your App Center upload command will require a few extra arguments compared to a typical upload:
+
+  - `--aync` - This prevents your build from waiting for the test results and timing out.
+  - `--token` - Setting an API token since the Cloud Build machine is not logged in to your App Center identity.
+  - `--uitest-tools-dir` - Explicitly pointing to the Xamarin.UITest package tools folder. (Usually in a local system this is found automatically.)
+
+- There are 3 types of environment variables used to help the script:
+  1. Variables created by App Center, which can be accessed directly by your script. These variables behave similarly to variables set universally on a local system. (Documentation: https://docs.microsoft.com/en-us/appcenter/build/custom/scripts/#app-center-variables)
+  2. Variables created in your Build configuration settings. These will automatically be set for you on the Build VM, and can be used to store secure data such as login information; or even data that's tedious to manage within the script itself. (Documentation: https://docs.microsoft.com/en-us/appcenter/build/custom/variables/)
+  3. Variables defined in the script itself. These are usually optional, but can make it easier to consistently handle particular actions or point to certain paths. In the sample post-build script, these include `UITEST_PATH` & `App_Center_Test_Command`
