@@ -1,4 +1,4 @@
-name: Build Xamarin.iOS app
+name: Xamarin.iOS
 
 on: [push]
 
