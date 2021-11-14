@@ -3,7 +3,8 @@ name: Build Xamarin.iOS app
 on: [push]
 
 jobs:
-  build:
+  Build:
+    name: Build 🛠
 
     runs-on: macos-latest
 
