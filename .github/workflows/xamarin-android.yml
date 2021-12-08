@@ -23,4 +23,4 @@ jobs:
       run: nuget restore UITestDemo.sln
 
     - name: Build
-      run: msbuild ${{GitHub_Workspace}}/Droid/UITestDemo.Droid.csproj /t:PackageForAndroid /p:Configuration=Debug
+      run: msbuild ${{GitHub.Workspace}}/Droid/UITestDemo.Droid.csproj /t:PackageForAndroid /p:Configuration=Debug
