@@ -20,3 +20,9 @@ jobs:
 
     - name: Build
       run: msbuild ${{GitHub.Workspace}}/Droid/UITestDemo.Droid.csproj /t:PackageForAndroid /p:Configuration=Debug
+    
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.3.0
+      with:
+        name: android
+        path: ${{GitHub.Workspace}}/Droid/bin/Debug/com.appcenter.UITestDemo.apk
