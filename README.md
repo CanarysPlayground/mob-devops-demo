@@ -10,6 +10,6 @@ Please click [here](https://canarysplayground.github.io/mob-devops-demo/) to see
 
 ### Build Status
 
-- Android: [![Build status](https://build.appcenter.ms/v0.1/apps/23a8249d-d25b-49c1-854a-02f700c0c50d/branches/main/badge)](https://appcenter.ms)
+- Android: [![Xamarin.Android](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/xamarin-android.yml/badge.svg?branch=main)](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/xamarin-android.yml)
 
-- iOS: [![Build status](https://build.appcenter.ms/v0.1/apps/b19ee064-4efb-40f2-8320-30f197c12008/branches/main/badge)](https://appcenter.ms/orgs/XTCTeam/apps/Kent-G.-UITestDemo-1/build/branches/main)
+- iOS: [![Xamarin.iOS](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/iOS.yml/badge.svg?branch=main)](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/iOS.yml)
