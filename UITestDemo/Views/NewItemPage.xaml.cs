@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Microsoft.AppCenter.Crashes;
 using Xamarin.Forms;
 
 namespace UITestDemo
@@ -23,8 +23,20 @@ namespace UITestDemo
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
-            await Navigation.PopToRootAsync();
+            //MessagingCenter.Send(this, "AddItem", Item);
+            //await Navigation.PopToRootAsync();
+            Crashes.GenerateTestCrash();
+            object o2 = null;
+            
+            try
+            {
+                int i2 = (int)o2;
+            }
+
+            catch (Exception exception)
+            {
+                Crashes.TrackError(exception);
+            }
         }
     }
 }

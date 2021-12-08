@@ -17,14 +17,19 @@ namespace UITestDemo.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            // Crashes.GenerateTestCrash();
 
 #if ENABLE_TEST_CLOUD
             Xamarin.Calabash.Start();
 #endif
-
-            AppCenter.Start("7c8a10af-023f-4e29-8285-ccaf669da49e", typeof(Analytics), typeof(Crashes));
-            return base.FinishedLaunching(app, options);
             
+            //AppCenter.Start("7c8a10af-023f-4e29-8285-ccaf669da49e", typeof(Analytics), typeof(Crashes));
+            return base.FinishedLaunching(app, options);
+
+
+
         }
+
+        
     }
 }

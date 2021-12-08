@@ -7,6 +7,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace UITestDemo.Droid
 {
@@ -23,6 +26,7 @@ namespace UITestDemo.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             LoadApplication(new App());
+            //AppCenter.Start("8e89b3c4-261e-419b-a704-df3f10821a90", typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
