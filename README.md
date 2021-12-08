@@ -10,6 +10,7 @@ Please click [here](https://canarysplayground.github.io/mob-devops-demo/) to see
 
 ### Build Status
 
-- Android: [![Xamarin.Android](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/xamarin-android.yml/badge.svg?branch=main)](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/xamarin-android.yml)
-
-- iOS: [![Xamarin.iOS](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/iOS.yml/badge.svg?branch=main)](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/iOS.yml)
+| **Platform** | **Status** |
+| --------------|-----------|
+| Android | [![Xamarin.Android](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/xamarin-android.yml/badge.svg?branch=main)](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/xamarin-android.yml)|
+| iOS | [![Xamarin.iOS](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/iOS.yml/badge.svg?branch=main)](https://github.com/CanarysPlayground/mob-devops-demo/actions/workflows/iOS.yml)|
