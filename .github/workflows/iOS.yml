@@ -14,9 +14,9 @@ jobs:
       run: |
         $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --ios=14.10
     
-    - name: Set default Xcode 12.3
+    - name: Set default Xcode 12.4
       run: |
-        sudo xcode-select -s /Applications/Xcode_12.3.0.app
+        sudo xcode-select -s /Applications/Xcode_12.4.app
 
     - name: Setup .NET Core SDK 5.0.x
       uses: actions/setup-dotnet@v1
