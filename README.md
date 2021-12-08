@@ -8,7 +8,7 @@ This sample is designed for use in Visual Studio & includes the sourcecode for a
 
 Please click [here](https://canarysplayground.github.io/mob-devops-demo/) to see the detailed steps for buildong the application.
 
-### Build Status
+### Build Status - Mobile Apps
 
 | **Platform** | **Status** |
 | --------------|-----------|
