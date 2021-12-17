@@ -1,6 +1,10 @@
 name: Xamarin.iOS
 
-on: [push]
+on: 
+  push:
+    branches:
+    - main
+  workflow_dispatch:
 
 jobs:
   Build:
