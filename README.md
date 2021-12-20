@@ -2,7 +2,7 @@
 
 ## Xamarin.UITest - (Cross-Platform)
 
-This sample is designed for use in Visual Studio & includes the sourcecode for a Xamarin.Forms app on Android & iOS platforms & a Xamarin.UITest project. It also includes a precompiled APK & IPA incase you want to try only building, running and uploading Xamarin.UITest.
+This sample is designed for use in Visual Studio & includes the sourcecode for a Xamarin.Forms app on Android & iOS platforms & a Xamarin.UITest project. It also includes a precompiled APK & IPA incase you want to try only building, running and uploading Xamarin.UITest. A small change
 
 ## Instructions 📝
 
