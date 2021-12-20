@@ -6,7 +6,7 @@ This sample is designed for use in Visual Studio & includes the sourcecode for a
 
 ## Instructions 📝
 
-Please click [here](https://canarysplayground.github.io/mob-devops-demo/) to see the detailed steps for buildong the application.
+Please click [here](https://canarysplayground.github.io/mob-devops-demo/) to see the detailed steps for building the application.
 
 ### Build Status - Mobile Apps
 
