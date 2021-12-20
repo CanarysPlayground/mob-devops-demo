@@ -7,7 +7,7 @@ A new change is being added.
 
 ## Instructions 📝
 
-Please click [here](https://canarysplayground.github.io/mob-devops-demo/) to see the detailed steps for buildong the application.
+Please click [here](https://canarysplayground.github.io/mob-devops-demo/) to see the detailed steps for build the application.
 
 ### Build Status - Mobile Apps
 
