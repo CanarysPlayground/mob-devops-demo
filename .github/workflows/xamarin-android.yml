@@ -48,3 +48,4 @@ jobs:
         file: ${{GitHub.Workspace}}/Droid/bin/Debug/com.appcenter.UITestDemo.apk
         notifyTesters: true
         debug: false
+        
