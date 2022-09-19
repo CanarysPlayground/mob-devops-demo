@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
     name: Build 🛠
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -26,3 +26,25 @@ jobs:
       with:
         name: android
         path: ${{GitHub.Workspace}}/Droid/bin/Debug/com.appcenter.UITestDemo.apk
+        
+  app-center:
+    name: ⬆️ Upload to App Center
+    runs-on: ubuntu-latest
+    needs: build
+    environment: App Center
+    steps:
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: app
+    
+    - run: ls -la
+    - name: Upload apk to App Center
+      uses: wzieba/AppCenter-Github-Action@v1
+      with:
+        appName: ramesh.kumar-ecanarys.com/UI-Test
+        token: ${{secrets.APP_CENTER_TOKEN}}
+        group: Beta-testers
+        file: ${{GitHub.Workspace}}/Droid/bin/Debug/com.appcenter.UITestDemo.apk
+        notifyTesters: true
+        debug: false
