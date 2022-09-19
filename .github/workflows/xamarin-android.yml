@@ -45,7 +45,7 @@ jobs:
         appName: ramesh.kumar-ecanarys.com/UI-Test
         token: ${{secrets.APP_CENTER_TOKEN}}
         group: Beta-testers
-        file: ${{GitHub.Workspace}}/Droid/bin/Debug/com.appcenter.UITestDemo.apk
+        file: ${{GitHub.Workspace}}/com.appcenter.UITestDemo.apk
         notifyTesters: true
         debug: false
         
